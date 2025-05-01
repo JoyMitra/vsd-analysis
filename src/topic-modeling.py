@@ -16,7 +16,7 @@ import pickle
 import logging
 from datetime import datetime
 
-CUSTOM_STOP_WORDS = list(ENGLISH_STOP_WORDS) + ['scenario', 'given', 'want', 'based', 'feature', 'features']
+CUSTOM_STOP_WORDS = list(ENGLISH_STOP_WORDS) + ['__scenario', 'contentfeature', 'contenttype', 'testing', 'screenshot', 'coverage', 'assets', 'asset', 'attachment', 'attachment', 'width', 'am', 'pm', 'img', 'alt', 'src', 'react', 'mongodb', 'html', 'js', 'ts', 'tsx', 'br', 'examples', 'example', 'scenarios', 'scenario', 'given', 'want', 'based', 'feature', 'features']
 
 # Set up logging
 logging.basicConfig(
@@ -85,7 +85,7 @@ def read_text_files(main_dir):
     logging.info(f"Processed {len(all_texts)} text files in total")
     return all_texts, pd.DataFrame(metadata)
 
-def preprocess_texts(texts, max_features=5000, max_df=0.8, min_df=1):
+def preprocess_texts(texts, max_features=5000, max_df=10, min_df=1):
     """
     Preprocess texts and create document-term matrix
     
@@ -296,7 +296,7 @@ def visualize_document_clustering(doc_topic_dist, output_dir):
         
         # Create scatter plot
         plt.figure(figsize=(12, 10))
-        scatter = plt.scatter(doc_tsne[:, 0], doc_tsne[:, 1], c=dominant_topic, cmap='tab20', alpha=0.7)
+        scatter = plt.scatter(doc_tsne[:, 0], doc_tsne[:, 1], c=dominant_topic, cmap='tab20', alpha=0.4)
         plt.colorbar(scatter, label='Dominant Topic')
         plt.title('Document Clustering by Topic (t-SNE)', fontsize=16)
         plt.xlabel('t-SNE Dimension 1', fontsize=14)
