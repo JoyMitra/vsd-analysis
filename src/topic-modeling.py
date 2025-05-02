@@ -16,7 +16,7 @@ import pickle
 import logging
 from datetime import datetime
 
-CUSTOM_STOP_WORDS = list(ENGLISH_STOP_WORDS) + ['__scenario', 'contentfeature', 'contenttype', 'testing', 'screenshot', 'coverage', 'assets', 'asset', 'attachment', 'attachment', 'width', 'am', 'pm', 'img', 'alt', 'src', 'react', 'mongodb', 'html', 'js', 'ts', 'tsx', 'br', 'examples', 'example', 'scenarios', 'scenario', 'given', 'want', 'based', 'feature', 'features']
+CUSTOM_STOP_WORDS = list(ENGLISH_STOP_WORDS) + ['software', '__scenario', 'contentfeature', 'contenttype', 'testing', 'screenshot', 'coverage', 'assets', 'asset', 'attachment', 'attachment', 'width', 'am', 'pm', 'img', 'alt', 'src', 'react', 'mongodb', 'html', 'js', 'ts', 'tsx', 'br', 'examples', 'example', 'scenarios', 'scenario', 'given', 'want', 'based', 'feature', 'features']
 
 # Set up logging
 logging.basicConfig(
@@ -85,7 +85,7 @@ def read_text_files(main_dir):
     logging.info(f"Processed {len(all_texts)} text files in total")
     return all_texts, pd.DataFrame(metadata)
 
-def preprocess_texts(texts, max_features=5000, max_df=10, min_df=1):
+def preprocess_texts(texts, max_features=5000, max_df=8, min_df=1):
     """
     Preprocess texts and create document-term matrix
     
