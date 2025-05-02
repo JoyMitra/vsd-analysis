@@ -24,8 +24,12 @@ of the form *final-project-REPONAME*
 
 4. Some stakeholder terms may not make sense. You can search for the words in `/path/to/analysis/outFile` to understand the context in which it was defined and whether you should consider it.
 
-## Topic Modeling
+## Values
 
-Use the following command to run topic modeling:
+First extract the context for each issue using the following command:
 
-`python src/topic-modeling.py /path/to/issues --output_dir /path/to/out --n_topics <INTEGER>`
+`$ python src/extract-context.py /path/to/issues /path/to/output`
+
+Use the following command to run topic modeling on the files generated in the previous step. The number of topics assumed is 7 as that is the optimal based on the topic distribution
+
+`python src/topic-modeling.py /path/to/contextfiles --output_dir /path/to/out --n_topics <INTEGER>`
