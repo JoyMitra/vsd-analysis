@@ -28,7 +28,7 @@ of the form *final-project-REPONAME*
 
 First extract the context for each issue using the following command:
 
-`$ python src/extract-context.py /path/to/issues /path/to/output`
+`$ python src/extract-context.py /path/to/issues /path/to/contextfiles`
 
 Use the following command to run topic modeling on the files generated in the previous step. The number of topics assumed is 7 as that is the optimal based on the topic distribution
 
