@@ -9,9 +9,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 from wordcloud import WordCloud
-import nltk
-from nltk.corpus import stopwords
-from tqdm import tqdm
+# import nltk
+# from nltk.corpus import stopwords
+# from tqdm import tqdm
 import pickle
 import logging
 from datetime import datetime
@@ -28,15 +28,15 @@ logging.basicConfig(
     ]
 )
 
-def setup_nltk():
-    """Download required NLTK resources"""
-    try:
-        nltk.download('stopwords', quiet=True)
-        nltk.download('punkt', quiet=True)
-        logging.info("NLTK resources downloaded successfully")
-    except Exception as e:
-        logging.error(f"Error downloading NLTK resources: {e}")
-        raise
+# def setup_nltk():
+#     """Download required NLTK resources"""
+#     try:
+#         nltk.download('stopwords', quiet=True)
+#         nltk.download('punkt', quiet=True)
+#         logging.info("NLTK resources downloaded successfully")
+#     except Exception as e:
+#         logging.error(f"Error downloading NLTK resources: {e}")
+#         raise
 
 def read_text_files(main_dir):
     """
@@ -253,12 +253,42 @@ def create_topic_wordclouds(lda_model, vectorizer, output_dir, n_topics, max_wor
     
     logging.info(f"Saved {n_topics} topic word clouds")
 
+# def visualize_topic_similarity(lda_model, output_dir):
+#     """Create and save a visualization of topic similarity"""
+#     # Compute topic similarity matrix
+#     n_topics = lda_model.n_components
+#     topic_similarity = np.zeros((n_topics, n_topics))
+    
+#     for i in range(n_topics):
+#         for j in range(n_topics):
+#             # Compute cosine similarity between topic vectors
+#             similarity = np.dot(lda_model.components_[i], lda_model.components_[j])
+#             similarity /= (np.linalg.norm(lda_model.components_[i]) * np.linalg.norm(lda_model.components_[j]))
+#             topic_similarity[i, j] = similarity
+    
+#     # Create figure
+#     plt.figure(figsize=(10, 8))
+#     sns.heatmap(
+#         topic_similarity, 
+#         annot=True, 
+#         fmt='.2f', 
+#         cmap='YlGnBu',
+#         cbar_kws={'label': 'Cosine Similarity'},
+#         xticklabels=[f'Topic {i+1}' for i in range(n_topics)],
+#         yticklabels=[f'Topic {i+1}' for i in range(n_topics)]
+#     )
+#     plt.title('Topic Similarity Matrix', fontsize=16)
+#     plt.tight_layout()
+#     plt.savefig(os.path.join(output_dir, 'topic_similarity.png'), dpi=200)
+#     logging.info("Saved topic similarity visualization")
+
 def visualize_topic_similarity(lda_model, output_dir):
-    """Create and save a visualization of topic similarity"""
+    """Create and save a visualization of topic similarity with proper formatting"""
     # Compute topic similarity matrix
     n_topics = lda_model.n_components
     topic_similarity = np.zeros((n_topics, n_topics))
     
+    # Calculate all similarity values
     for i in range(n_topics):
         for j in range(n_topics):
             # Compute cosine similarity between topic vectors
@@ -266,20 +296,33 @@ def visualize_topic_similarity(lda_model, output_dir):
             similarity /= (np.linalg.norm(lda_model.components_[i]) * np.linalg.norm(lda_model.components_[j]))
             topic_similarity[i, j] = similarity
     
-    # Create figure
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(
+    # Explicitly set diagonal to 1.0 (topic self-similarity)
+    np.fill_diagonal(topic_similarity, 1.0)
+    
+    # Create figure with adjusted size
+    plt.figure(figsize=(12, 10))
+    
+    # Create heatmap with explicit annotations and formatting
+    ax = sns.heatmap(
         topic_similarity, 
-        annot=True, 
-        fmt='.2f', 
-        cmap='YlGnBu',
+        annot=True,          # Show the values
+        fmt='.2f',           # Format to 2 decimal places
+        cmap='YlGnBu',       # Color scheme
         cbar_kws={'label': 'Cosine Similarity'},
         xticklabels=[f'Topic {i+1}' for i in range(n_topics)],
-        yticklabels=[f'Topic {i+1}' for i in range(n_topics)]
+        yticklabels=[f'Topic {i+1}' for i in range(n_topics)],
+        annot_kws={"size": 8}  # Reduce annotation text size for better fit
     )
+    
+    # Adjust tick label size if needed
+    plt.setp(ax.get_xticklabels(), fontsize=9)
+    plt.setp(ax.get_yticklabels(), fontsize=9)
+    
     plt.title('Topic Similarity Matrix', fontsize=16)
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, 'topic_similarity.png'), dpi=200)
+    
+    # Save with higher DPI for better quality
+    plt.savefig(os.path.join(output_dir, 'topic_similarity.png'), dpi=300, bbox_inches='tight')
     logging.info("Saved topic similarity visualization")
 
 def visualize_document_clustering(doc_topic_dist, output_dir):
@@ -488,7 +531,7 @@ def analyze_directory(main_dir, output_dir='topic_model_results', n_topics=10):
     logging.info(f"Output directory: {output_dir}")
     
     # Setup NLTK
-    setup_nltk()
+    # setup_nltk()
     
     # Read all text files
     texts, metadata = read_text_files(main_dir)
