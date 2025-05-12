@@ -1,34 +1,12 @@
 backend developer on the StackOverflow team
-backend engineer on the StackOverflow team
-convenient and simple way of citing sources
-critical signal for content quality
-developer
 developer on the StackOverflow team
-given
-hash
-logged
 logged-in user
 member
 moderator
-new
 new Fake StackOverflow user
 new user
-non
-nudge
-platform
-post
 post owner
-registered
 registered User
-registered user
-result
 server
-site
-site user I want to have a protected session so that I can continue to use my data
 system administrator
-tool
-user
-user I want to create an account
-user I want to vote up or down a specific answer so that I can see the vote number
 user of the Stack Overflow clone
-user of the application

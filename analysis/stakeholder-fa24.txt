@@ -1,22 +1,15 @@
 FSO developer
 community member
-developer
-logged in user
 logged-in user
-malicious
+malicious user
 moderator
 new user
 platform administrator
-pre
 question author
 question poster
 registered user
 returning user
 security-conscious developer
-site admin
 site administrator
 stack overflow user
-user
-user I want my password to be protected from malicious attackers
-user creating a post
 user of this app
