@@ -92,7 +92,7 @@ def preprocess_texts(texts, max_features=5000, max_df=8, min_df=1):
     Args:
         texts (list): List of document texts
         max_features (int): Maximum number of features for the vectorizer
-        max_df (float): Ignore terms that appear in more than this fraction of documents
+        max_df (int): Ignore terms that appear in more than this number of documents
         min_df (int): Ignore terms that appear in fewer than this number of documents
         
     Returns:
