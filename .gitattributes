@@ -1,0 +1,8 @@
+analysis/descriptions-fa24.txt filter=lfs diff=lfs merge=lfs -text
+analysis/descriptions-sp25.txt filter=lfs diff=lfs merge=lfs -text
+analysis/descTmp-fa24.txt filter=lfs diff=lfs merge=lfs -text
+analysis/descTmp-sp25.txt filter=lfs diff=lfs merge=lfs -text
+analysis/stakeholder-fa24.txt filter=lfs diff=lfs merge=lfs -text
+analysis/stakeholder-sp25.txt filter=lfs diff=lfs merge=lfs -text
+analysis/values-f24 filter=lfs diff=lfs merge=lfs -text
+analysis/values-sp25 filter=lfs diff=lfs merge=lfs -text
