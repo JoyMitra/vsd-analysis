@@ -76,6 +76,17 @@ of the form *final-project-REPONAME*
 
 4. Some stakeholder terms may not make sense. You can search for the words in `/path/to/analysis/outFile` to understand the context in which it was defined and whether you should consider it.
 
+Run the following command to run the Mann-whitney U tests:
+
+`python src/stakeholder-mann-whitney.py analysis/stakeholder-countByPair-fa24.csv analysis/stakeholder-countByPair-sp25.csv --group1_name="VSD" --group2_name="No VSD" --alpha=0.01 --plot="stakeholder-analysis-plot.png"`
+
+The plot argument is optional. The script is used to test the following:
+
+Null Hypothesis -- There is no difference in the number of stakeholders identified by a pair of students who were explicitly taught VSD vs. a pair who were not.
+
+Alternate -- There is a significant difference. In fact teaching VSD leads to higher stakeholders as 
+seen from the effect size (CLES) of more than 0.8.
+
 ## Value Extraction
 
 First extract the context for each issue using the following command:
